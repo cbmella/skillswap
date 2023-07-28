@@ -1,12 +1,8 @@
-import express from "express";
+// exchanges.ts
 import Exchange from "../models/Exchange";
+import { createCrudRoutes } from "./crudRoutes";
+import exchangeSchema from "../validators/exchangeValidator";
 
-const router = express.Router();
-
-// Ruta para obtener todos los intercambios
-router.get("/", async (req, res) => {
-  const exchanges = await Exchange.find();
-  res.send(exchanges);
-});
+const router = createCrudRoutes(Exchange, exchangeSchema);
 
 export default router;
